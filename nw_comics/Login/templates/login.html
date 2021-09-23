@@ -1,0 +1,45 @@
+{% extends 'base_login.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{%block content%}
+<div class="container">
+    <div class="row justify-content-md-center">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+            <form action="{% url 'Login:do_login' %}" method='POST'>
+                {% csrf_token %}
+                <input type="text" name="username" autofocus=""  required="" id="id_username" class="fadeIn second" name="login" placeholder="login">
+                <input type="password" name="password" required="" id="id_password" class="fadeIn third" name="login" placeholder="password">
+                <a href="#">Esqueceu sua senha?</a>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="col col-lg-2">
+            <form action="{% url 'Login:cadastro' %}">
+                <input type="text" name="username" autofocus=""  required="" id="id_username" name="login" placeholder="login">
+                <input type="text" name="data" required="" id="id_data"  name="data" placeholder="Data de nascimento">
+                <input type="email" name="email" required="" id="id_email" name="email" placeholder="E-mail">
+                <input type="password" name="password_1" required="" id="id_password_1" name="password" placeholder="Senha">
+                <input type="password" name="password_2" required="" id="id_password_2" name="password_2" placeholder="Confirme sua senha">
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
