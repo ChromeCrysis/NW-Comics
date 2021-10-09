@@ -34,4 +34,5 @@ def do_logout(request):
     return redirect('Home:index')
 
 def casdastro(request):
-    pass
+    context = {}
+    return render(request, "cadastro.html", context)
