@@ -1,6 +1,10 @@
 {% extends 'base_login.html' %}
 {% load static %}
 
+{% block head %}
+<link href="{% static 'login/css/login.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block title %} Login {% endblock %}
 
 {%block content%}
@@ -46,7 +50,7 @@
           <form action="{% url 'Login:do_login' %}" method='POST'>
             {% csrf_token %}
             <input type="text" name="username" id="id_username" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" name="password" id="id_password" class="fadeIn third" name="login" placeholder="password">
+            <input type="password" name="password" id="id_password" class="fadeIn third" name="login" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
           </form>
           
