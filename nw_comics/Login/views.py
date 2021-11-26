@@ -2,6 +2,8 @@ from .backend import MyBackend
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import UserCreationForm
+from .models import Usuarios
 
 # Create your views here.
 
@@ -33,6 +35,20 @@ def do_logout(request):
     logout(request)
     return redirect('Home:index')
 
+# Cadastro de usuario
 def casdastro(request):
-    context = {}
-    return render(request, "cadastro.html", context)
+    if request.method == 'GET':
+        context = {}
+        return render(request, "cadastro.html", context)
+    elif request.method == 'POST':
+        form_user = UserCreationForm(request.POST)
+
+        if form_user.is_valid():
+            user = form_user.save()
+            usuario = Usuarios(auth_user=user, admin=False, ativado=False, data_nascimento=request.POST['id_data'])
+            usuario.save()
+            return redirect('Home:index')
+        else:
+            for erro, msg in form_user.errors.items():
+                messages.error(request, msg, extra_tags='danger')
+            return render(request, "cadastro.html")
