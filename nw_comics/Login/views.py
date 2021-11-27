@@ -45,7 +45,7 @@ def casdastro(request):
 
         if form_user.is_valid():
             user = form_user.save()
-            usuario = Usuarios(auth_user=user, admin=False, ativado=False, data_nascimento=request.POST['id_data'])
+            usuario = Usuarios(auth_user=user, admin=False, ativado=False, data_nascimento=request.POST['data'])
             usuario.save()
             return redirect('Home:index')
         else:

@@ -1,0 +1,33 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block title %} Inicio {% endblock %}
+
+{%block content%}
+<div class="container">
+    <h2>{{mensagem}}</h2>
+    <form action="{% url 'Artigos:publicar' %}" method="POST">
+        {% csrf_token %}
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                    <label class="form-control" for="id_titulo">Titulo:</label>
+                    <input class="form-control" type="text" name="titulo" cols="40" rows="10" required="" id="id_titulo"></input>
+                    <br>
+                    <label class="form-control" for="id_resumo">Resumo:</label>
+                    <textarea class="form-control" name="resumo" cols="40" rows="10" required="" id="id_resumo"></textarea>
+                    <br>
+                    <label class="form-control" for="id_capa">Capa:</label>
+                    <input class="form-control" type="file" name="capa" accept="image/*" required="" id="id_capa">
+                    <br>
+                    <input type="submit" value="Cadastar Artigo">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        
+    </div>
+</div>
+{%endblock%}

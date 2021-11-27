@@ -1,0 +1,31 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block title %} Inicio {% endblock %}
+
+{%block content%}
+<div class="container">
+    {% for artigo in artigos %}
+        <div class="row justify-content-md-center">
+            <div class="form-control col-md-2">
+                <label class="form-control" for="">Titulo:</label>
+                {{artigo.titulo}}
+            </div>
+            <div class="form-control col-md-5">
+                <label class="form-control" for="">Resumo:</label>
+                {{artigo.resumo}}
+            </div>
+            <div class="form-control col-md-2">
+                <label class="form-control" for="">Capa:</label>
+                {{artigo.capa}}
+            </div>
+        </div>
+    {%endfor%}
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        
+    </div>
+</div>
+{%endblock%}
